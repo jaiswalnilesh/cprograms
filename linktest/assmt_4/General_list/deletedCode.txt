@@ -1,0 +1,231 @@
+/*Program to create a link list and add some elements to it */
+/*
+#include"stdio.h"
+#include"stdlib.h"
+#include"string.h"
+#include"conio.h"
+
+void addNode(struct Node**,char* str);
+char delNode(struct Node**,char* str);
+void deleteList(struct Node**);
+int count=1;
+
+struct Node
+{
+	char* name;
+	struct Node *Next;
+};
+
+void main()
+{
+	int i=0,operation;
+	char done,*str;
+	struct Node *first=NULL,*temp=NULL;
+
+	do
+	{
+		fflush(stdin);
+        printf("\nEnter 1 or 2 or 3 for following operations !!\n 1) Display List \n 2) Add element to the list\n 3) Delete element from the list \n any other key to exit\n");
+ 		if(scanf("%d",&operation)==0)
+		{
+			exit(0);
+		}
+
+
+		switch (operation)
+		{
+			case 1:
+				{
+					temp=first;
+					if(temp==NULL)
+						printf("No Elements in the List\n");
+					else while(temp!= NULL)
+					{
+						printf("\n %s\n",temp->name);
+						temp=temp->Next;
+					}
+					break;
+				}
+			case 2:
+				{
+					fflush(stdin);
+					printf("Enter NAME to be added  :");
+					str=malloc(100);
+					scanf("%s",str);
+					addNode(&first,str);
+					printf("\t\tAdded!!\n\n");
+					break;
+				}
+			case 3:
+				{
+					printf("\n\nIf u wanna delete some node enter the element of that node:");
+
+					do
+					{
+						count=1;
+						if(count==0)
+						printf("Enter a valid String:");
+						fflush(stdin);
+						count=scanf("%s",&str);
+					}while(count==0);
+					 
+					done=delNode(&first,str);
+					if(done=='y')
+						printf("\t\tdeleted!\n");
+					else
+						printf("\t\tName is not present in the list\n");
+					
+					break;
+				}
+			default:
+				exit(1);
+		}
+	
+	printf("Press any key..............");
+	_getch();
+	}while(operation>0 && operation <4);
+	deleteList(&first);
+}
+
+/*
+void addNode(struct Node** first,char* str)
+{
+	struct Node *temp;
+	struct Node *temp1,*prev;
+
+	temp=*first;
+
+	if(*first==NULL)
+	{
+		temp=(struct Node*)malloc(sizeof(struct Node));
+		temp->Next=NULL;
+		temp->name=(char*)malloc(sizeof(char)*(strlen(str)+1));
+		temp->name=str;
+		*first=temp;
+	}
+
+	else
+	{
+		if(strcmp(temp->name,str)==0 || strcmp(temp->name,str)>0)
+		{
+			temp1=(struct Node*)malloc(sizeof(struct Node));
+			temp1->Next=*first;
+			temp1->name=malloc(strlen(str)+1);
+			temp1->name=str;
+			*first=temp1;
+		}
+		else
+		{
+		
+			while((strcmp(temp->name,str))<0 && temp->Next!=NULL)
+			{
+				prev=temp;
+				temp=temp->Next;
+			}
+			
+			if(temp->Next==NULL && (strcmp(temp->name,str))<0)
+			{                                                                                                                                                                                                                            
+				temp->Next=(struct Node*)malloc(sizeof(struct Node));
+				temp=temp->Next;
+				temp->Next=NULL;
+				temp->name=malloc(strlen(str)+1);
+				temp->name=str;
+				
+					
+			}
+			else
+			{
+				temp1=(struct Node*)malloc(sizeof(struct Node));
+				prev->Next=temp1;
+				temp1->Next=temp;
+				temp1->name=malloc(strlen(str)+1);
+				temp1->name=str;
+			
+			}
+		}
+	}
+}
+*/
+/*
+void addNode(struct Node** first,char* str)
+{
+	struct Node *temp;
+	struct Node *temp1,*prev;
+	
+	temp=*first;
+
+	temp1=(struct Node*)malloc(sizeof(struct Node));
+	temp1->Next=NULL;
+	temp1->name=(char*)malloc(sizeof(char)*(strlen(str)+1));
+	strcpy(temp1->name,str);
+
+	if(*first==NULL)
+	{	
+		*first=temp1;
+	}
+
+	else
+	{
+		if(strcmp(temp->name,str)==0 || strcmp(temp->name,str)>0)
+		{
+			temp1->Next=*first;
+			*first=temp1;
+		}
+		else
+		{
+		
+			while(temp!=NULL && (strcmp(temp->name,str))<0 )
+			{
+				prev=temp;
+				temp=temp->Next;
+			}
+		    prev->Next=temp1;
+			temp1->Next=temp;
+				
+		}
+	}
+}
+
+
+
+char delNode(struct Node** first,char* str)
+{
+	struct Node *temp=*first,*prev;
+	if(temp==NULL)
+		return 'n';
+	if(strcmp(temp->name,str)==0)
+	{
+		*first=temp->Next;
+		free(temp);	
+		return 'y';
+
+	}
+	else
+	{
+		while(strcmp(temp->name,str)!=0)
+		{
+			prev=temp;
+			temp=temp->Next;
+			if(temp==NULL)
+			{
+				return 'n';		
+			}
+		}
+
+			prev->Next=temp->Next;
+			free(temp);
+			return 'y';
+	}
+
+}
+void deleteList(struct Node **first)
+{
+	struct Node *temp;
+	while(*first!=NULL)
+	{
+		temp=(*first)->Next;
+		free(*first);
+		*first=temp;
+	}
+}
+*/

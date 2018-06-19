@@ -1,0 +1,96 @@
+#include "stdio.h"
+#include "stdlib.h"
+#define N 8
+void place(int n,int count,int row,int c);
+int getabs(int);
+int canexist(int row,int* col);
+int rows[8]={0,-1},cols[8]={0,-1};
+
+int getabs(int x)
+{
+	return ((x>0)? x:-x);
+}
+
+void main()
+{
+	place(N,1,0,0);
+	int count=1;
+
+	for(count=0;count<8;count++)
+	{
+		printf("%d %d\n",rows[count],cols[count]);
+	
+	
+	}
+}
+
+void place(int n,int count,int row,int c)
+{
+	int flag,col;
+	if(count==n)
+		return;
+	else
+	{
+		col=c
+		row++;
+					
+		flag=canexist(row,&col);
+		if(flag==0)
+		{
+			rows[count]=row;
+			cols[count]=col;
+			
+			rows[count+1]=-1;
+			cols[count+1]=-1;
+			count++;
+			
+			place(N,count,row,rows,cols,0);
+		}
+
+		else
+		{
+			count--;
+			row=row-2;
+			c=cols[count]+1;
+			rows[count]=-1;
+			cols[count]=-1;
+			
+			iter++;
+			place(N,count,row,rows,cols,iter,c);
+		}
+	}
+
+}
+
+int canexist(int row,int* col)
+{
+	int index=0,flag;
+	while(;*col<8 && *col>0;)
+	{
+		flag=0;
+		while(cols[index] !=0 )
+		{
+			if(cols[index]==*col || (getabs(cols[index]-*col))==(getabs(rows[index]-row)))
+			{
+				flag=1;
+				*col++;
+				break;
+			}
+			index++;
+		}
+		
+	}
+	if(*col==8 || flag=1)
+		return 1;
+	else
+		if(flag==0 && *col<8)
+			return 0;
+}
+
+
+
+
+
+
+
+}

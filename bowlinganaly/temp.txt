@@ -1,0 +1,19 @@
+if(prnx1)
+		{
+			temp = prnx1->link ;
+			prnx1->link = prnx2->link ;
+			prnx2->link = temp ;
+			prnx2 = prnx1->link->link ;
+			prnx1->link->link = temp->link ;
+		}
+		else if(prnx2)
+		{
+			temp = head ;
+			head = prnx2->link ;
+			prnx1 = prnx2->link ;
+			prnx2->link = temp ;
+			prnx2 = prnx1->link ;
+			prnx1->link = temp->link ;	
+		}
+		if(prnx1)
+			temp->link = prnx2 ;
